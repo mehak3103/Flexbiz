@@ -113,7 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Services Card Stacking Logic
+    // 5. Services Card Stacking Logic - DISABLED
+    // User wants simple 2-row layout instead of stacking animation
+    /*
     gsap.registerPlugin(ScrollTrigger);
 
     const servicesContainer = document.querySelector('.services-stack-container');
@@ -121,6 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const servicesGroup2 = document.querySelector('.services-group.group-2');
 
     if (servicesContainer && servicesGroup1 && servicesGroup2) {
+        // Set initial states explicitly
+        gsap.set(servicesGroup1, { opacity: 1, scale: 1, visibility: 'visible', zIndex: 2 });
+        gsap.set(servicesGroup2, { opacity: 0, scale: 1.1, visibility: 'hidden', zIndex: 1, pointerEvents: 'none' });
+
         // PIN THE CONTAINER ONLY (so heading scrolls away)
         ScrollTrigger.create({
             trigger: servicesContainer,
@@ -128,17 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
             end: "+=150%", 
             pin: true,
             scrub: true,
+            invalidateOnRefresh: true,  // Prevent conflicts with Skills pin
             onUpdate: (self) => {
                 const progress = self.progress;
                 
                 if (progress > 0.5) {
-                    gsap.to(servicesGroup1, { opacity: 0, scale: 0.9, duration: 0.5, overwrite: true });
-                    gsap.to(servicesGroup2, { autoAlpha: 1, scale: 1, duration: 0.5, overwrite: true, pointerEvents: "auto" });
+                    // Show group 2, hide group 1
+                    gsap.to(servicesGroup1, { opacity: 0, scale: 0.9, visibility: 'hidden', zIndex: 1, duration: 0.5, overwrite: true });
+                    gsap.to(servicesGroup2, { opacity: 1, scale: 1, visibility: 'visible', zIndex: 2, pointerEvents: "auto", duration: 0.5, overwrite: true });
                 } else {
-                    gsap.to(servicesGroup1, { opacity: 1, scale: 1, duration: 0.5, overwrite: true });
-                    gsap.to(servicesGroup2, { autoAlpha: 0, scale: 1.1, duration: 0.5, overwrite: true, pointerEvents: "none" });
+                    // Show group 1, hide group 2
+                    gsap.to(servicesGroup1, { opacity: 1, scale: 1, visibility: 'visible', zIndex: 2, duration: 0.5, overwrite: true });
+                    gsap.to(servicesGroup2, { opacity: 0, scale: 1.1, visibility: 'hidden', zIndex: 1, pointerEvents: "none",  duration: 0.5, overwrite: true });
                 }
             }
         });
     }
+    */
 });

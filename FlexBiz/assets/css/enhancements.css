@@ -82,31 +82,25 @@
 /* Services Card Stacking */
 .services-stack-container {
   position: relative;
-  min-height: 100vh;
-  /* OCCUPY FULL VIEWPORT */
   width: 100%;
-  display: flex !important;
-  align-items: center !important;
-  /* CENTER CARDS VERTICALLY */
-  justify-content: center;
+  padding: 40px 0;
 }
 
 .services-group {
-  position: absolute;
-  top: 50%;
-  left: 0;
+  position: relative;  /* Normal flow, not absolute */
   width: 100%;
-  background: transparent;
-  transform: translateY(-50%);
-  /* CENTER ABSOLUTE GROUPS */
-  padding-top: 80px;
-  /* CLEAR FIXED HEADER */
+  margin-bottom: 40px;  /* Space between rows */
+}
+
+.services-group.group-1 {
+  opacity: 1;
+  visibility: visible;
 }
 
 .services-group.group-2 {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 1;  /* Make visible */
+  visibility: visible;  /* Show second row */
+  pointer-events: auto;
 }
 
 /* Clearances for section title scroll-away */
@@ -124,6 +118,51 @@
 }
 
 /* Cursor and Orb styles remain... */
+
+/* Portfolio Grid Revert */
+.portfolio .portfolio-content {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.portfolio .portfolio-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.portfolio .portfolio-content img {
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.portfolio .portfolio-content:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio .portfolio-info {
+  padding: 15px;
+  /* Reduced padding for small cards */
+  text-align: center;
+}
+
+.portfolio .portfolio-info h4 {
+  font-size: 1.1rem;
+  /* Smaller font for small cards */
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.portfolio .portfolio-info p {
+  font-size: 0.8rem;
+  /* Smaller description */
+  color: #666;
+  margin-bottom: 0;
+}
 
 /* Hide default cursor only if on desktop */
 @media (min-width: 992px) {
